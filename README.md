@@ -11,17 +11,17 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A **Phaser cookbook** for web game scenes, sprites, input, and asset pipelines. Patterns are written for browser games in the style of ZQM Labs' location games: small scenes, touch-friendly input, and WebP art. It is intended for web game developers building playable browser games. Validate each pattern against your own game, Phaser version, and operating environment before adopting it.
+A **Phaser cookbook** for browser-game scenes, sprites, input, and asset pipelines. Patterns target small, touch-friendly web games and quest-style experiences. Examples should be runnable, version-aware, and honest about what has and has not been tested.
 
 ## Repository role and status
 
-**Status:** Active, public — seeding. Pattern passes land in follow-up work; the table below lists what is planned, not what is already written.
+**Status:** Active, public — first scene example and static contract tests added. The pattern list distinguishes implemented content from planned work.
 
-**What this repository is:** Phaser patterns — scenes, sprites, input, and asset pipelines for web games.
+**What this repository is:** Phaser patterns for scene lifecycle, interaction, animation, and web asset delivery.
 
-**What it contributes:** Part of the ZQM Labs game-development portfolio, and a sibling to the ZQM Computing geospatial cookbook series.
+**What it contributes:** Part of the ZQM Labs game-development portfolio. It complements ZQM Computing's geospatial cookbook series by focusing on the playable client, input, and rendering.
 
-**Standing:** This repository is maintained independently. Automated checks cover only the paths and environments configured in its workflows; they do not establish production readiness or operational certification.
+**Quality bar:** Keep examples minimal, include keyboard and touch paths where applicable, provide DOM-level instructions/status for canvas interactions, and test the contract. Static checks do not replace a real browser/device smoke test.
 
 ## Who this is for
 
@@ -29,33 +29,76 @@ Web game developers building playable browser games, especially map-based and qu
 
 ## Prerequisites
 
-- Node.js and a static file server or dev server
-- Phaser 3 (version pinned per pattern at fill time)
-- WebP-capable art assets (see the art pipeline pattern)
+- Node.js 20+ for example contract tests
+- Python 3 or another static file server for the first-scene example
+- Phaser 3.90.0 CDN access for the demo; production projects should use a reviewed, pinned local dependency and their normal content-security policy
 
-## Patterns (planned)
+## Patterns
 
-| # | Example | What it will demonstrate |
-|---|---------|--------------------------|
-| 01 | `01-scene-setup` | Boot, preload, and create scenes with a minimal playable loop |
-| 02 | `02-sprite-animation` | Sprite sheets, animations, and frame control from WebP/PNG atlases |
-| 03 | `03-input-mobile` | Touch and mouse input that plays the same on phone and desktop |
-| 04 | `04-asset-pipeline` | Loading, caching, and versioning game art for web delivery |
+### 01 — First playable scene (implemented)
+
+[Open the example](examples/01-scene-setup/). Includes one scene, responsive canvas scaling, pointer/touch and keyboard activation, DOM live status, a library-load failure message, and static contract tests.
+
+### 02 — Sprite animation (planned)
+
+Sprite sheets, animation definitions, and frame control from WebP/PNG atlases.
+
+### 03 — Mobile input (planned)
+
+Touch and mouse input that remains usable across phone and desktop viewports.
+
+### 04 — Asset pipeline (planned)
+
+Asset loading, caching, versioning, and reproducible web delivery.
+
+## Quick start
+
+From the repository root:
+
+```sh
+python -m http.server 8000
+```
+
+Open `http://localhost:8000/examples/01-scene-setup/`. Click or tap the game area, or press Enter or Space. For static contract checks:
+
+```sh
+cd examples/01-scene-setup
+npm test
+```
 
 ## Repository layout
 
 ```text
 phaser-cookbook/
-├── examples/  # one directory per pattern
+├── .github/workflows/examples.yml
+├── examples/
+│   └── 01-scene-setup/
+│       ├── index.html
+│       ├── game.js
+│       ├── style.css
+│       ├── package.json
+│       ├── scene-contract.test.mjs
+│       └── README.md
 ├── README.md
 └── LICENSE
 ```
 
+## Engineering principles
+
+- Separate boot/preload/create responsibilities as examples grow.
+- Provide keyboard alternatives to pointer-only interactions.
+- Keep instructions and important state available in the DOM, not only on the canvas.
+- Pin dependency versions and explain CDN versus bundled dependency trade-offs.
+- Keep client state separate from authoritative purchase, entitlement, or score decisions.
+- Clearly distinguish static contract checks from browser-level rendering validation.
+
 ## Roadmap
 
-- First pattern pass: scene setup (01), then sprite animation (02)
-- Second pass: input (03) and asset pipeline (04)
+1. Add a sprite-animation example with a generated/test fixture atlas.
+2. Add a shared input abstraction and viewport-focused tests.
+3. Add a cache/versioning recipe for game assets and offline updates.
+4. Expand browser smoke coverage when a stable browser test environment is available.
 
 ## Contributing
 
-A contributing guide lands with the first pattern pass. Report security issues to <zqmcomputing@gmail.com> — please do not open a public issue for those.
+Each pattern should include a runnable example, exact test commands, tested versions, known limitations, and keyboard/touch considerations. Report security issues to <zqmcomputing@gmail.com> — please do not open a public issue for those.
