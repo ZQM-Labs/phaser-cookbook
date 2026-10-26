@@ -1,0 +1,11 @@
+{
+  "name": "zqm-phaser-first-scene-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test scene-contract.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
