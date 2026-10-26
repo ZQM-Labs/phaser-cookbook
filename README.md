@@ -21,7 +21,7 @@ A **Phaser cookbook** for browser-game scenes, sprites, input, and asset pipelin
 
 **What it contributes:** Part of the ZQM Labs game-development portfolio. It complements ZQM Computing's geospatial cookbook series by focusing on the playable client, input, and rendering.
 
-**Quality bar:** Keep examples minimal, include keyboard and touch paths where applicable, provide DOM-level instructions/status for canvas interactions, and test the contract. Static checks do not replace a real browser/device smoke test.
+**Quality bar:** Keep examples minimal, include keyboard and touch paths where applicable, provide DOM-level instructions/status for canvas interactions, and test the contract. A deterministic runtime harness exercises input/state behavior in Node.js; it does not replace a real browser/device smoke test.
 
 ## Who this is for
 
@@ -78,6 +78,7 @@ phaser-cookbook/
 │       ├── style.css
 │       ├── package.json
 │       ├── scene-contract.test.mjs
+│       ├── runtime-contract.test.mjs
 │       └── README.md
 ├── README.md
 └── LICENSE
