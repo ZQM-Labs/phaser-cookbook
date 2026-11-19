@@ -17,6 +17,7 @@ jobs:
   scene-contract:
     name: First scene contract (Node.js 20)
     runs-on: [self-hosted, Linux, X64, zqm-linux]
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: examples/01-scene-setup
